@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Most Coloring Books Never Sell — KDP Market Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0b;
+  --surface:#141412;
+  --surface2:#1c1c19;
+  --border:#2a2a26;
+  --border2:#3a3a35;
+  --text:#f0ede6;
+  --muted:#7a7870;
+  --accent:#e8c547;
+  --accent2:#c9a82c;
+  --red:#e05c4a;
+  --green:#4caf7d;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'DM Mono',monospace;
+  --sans:'Geist',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;overflow-x:hidden}
+
+.grain{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{padding:64px 0 48px;border-bottom:1px solid var(--border)}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,6vw,52px);font-weight:400;line-height:1.1;color:var(--text);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:15px;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:32px}
+.hero-sub strong{color:var(--text);font-weight:500}
+
+/* STAT STRIP */
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:32px 0}
+.stat{background:var(--surface);padding:16px 20px;text-align:center}
+.stat .n{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--accent);display:block}
+.stat .d{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+/* SECTION */
+.section{padding:40px 0;border-bottom:1px solid var(--border)}
+.section-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.section h2{font-family:var(--serif);font-size:clamp(22px,4vw,30px);font-weight:400;line-height:1.2;margin-bottom:16px}
+
+/* FAILURE ROW */
+.fail-list{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.fail-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:14px 18px;display:flex;align-items:flex-start;gap:14px}
+.fail-pct{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--red);min-width:52px;line-height:1}
+.fail-text{font-size:13px;color:var(--muted);line-height:1.5}
+.fail-text strong{color:var(--text);font-weight:500;display:block;margin-bottom:2px}
+
+/* GAP PREVIEW */
+.gap-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin:16px 0;position:relative;overflow:hidden}
+.gap-card::after{content:'Full data inside →';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,var(--surface) 70%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.06em}
+.gap-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.gap-row:last-child{border-bottom:none}
+.gap-niche{font-size:13px;color:var(--text)}
+.gap-meta{display:flex;gap:16px;align-items:center}
+.gap-reviews{font-family:var(--mono);font-size:12px;color:var(--green)}
+.gap-comp{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.blurred{filter:blur(5px);opacity:.4;pointer-events:none;user-select:none}
+
+/* INSIGHT CALLOUT */
+.insight{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:20px 24px;margin:20px 0}
+.insight-label{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.insight p{font-size:14px;color:var(--text);line-height:1.7}
+.insight p span{color:var(--accent);font-weight:500}
+
+/* WHAT'S INSIDE */
+.inside-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
+.inside-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+.inside-item.visible{color:var(--text)}
+.inside-item .check{color:var(--green);font-size:14px;flex-shrink:0;margin-top:1px}
+.inside-item .lock{color:var(--border2);font-size:14px;flex-shrink:0;margin-top:1px}
+
+/* CTA */
+.cta-block{padding:48px 0 64px;text-align:center}
+.cta-block h2{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:400;margin-bottom:8px;line-height:1.2}
+.cta-sub{font-size:14px;color:var(--muted);margin-bottom:28px}
+.cta-price{display:flex;align-items:baseline;gap:8px;justify-content:center;margin-bottom:24px}
+.cta-price .amount{font-family:var(--mono);font-size:36px;font-weight:500;color:var(--accent)}
+.cta-price .label{font-size:12px;color:var(--muted)}
+.cta-price .orig{font-family:var(--mono);font-size:18px;color:var(--muted);text-decoration:line-through}
+.btn{display:inline-block;background:var(--accent);color:#0d0d0b;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;padding:14px 32px;border-radius:6px;text-decoration:none;cursor:pointer;border:none;transition:background .15s,transform .1s}
+.btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.guarantee{font-size:12px;color:var(--muted);margin-top:16px}
+
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero,.stat-strip,.section,.cta-block{animation:fadeup .5s ease both}
+.stat-strip{animation-delay:.1s}
+.section:nth-of-type(2){animation-delay:.15s}
+.section:nth-of-type(3){animation-delay:.2s}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Market intelligence · May 2026</div>
+    <h1>Why most coloring books<br>on Amazon <em>never sell</em><br>a single copy</h1>
+    <p class="hero-sub">I scraped <strong>425 Amazon KDP listings</strong> and found a pattern nobody's talking about. The market isn't too crowded — it's just full of the same mistakes. Here's what the data shows.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-strip">
+    <div class="stat"><span class="n">425</span><span class="d">listings scraped & analyzed</span></div>
+    <div class="stat"><span class="n">28.6%</span><span class="d">have zero reviews. Ever.</span></div>
+    <div class="stat"><span class="n">3 gaps</span><span class="d">with demand & no quality supply</span></div>
+  </div>
+
+  <!-- FAILURE SECTION -->
+  <div class="section">
+    <div class="section-label">Free preview — the failure data</div>
+    <h2>The patterns that kill coloring books before they start</h2>
+    <div class="fail-list">
+      <div class="fail-item">
+        <div class="fail-pct">28.6%</div>
+        <div class="fail-text"><strong>Zero reviews. Zero sales.</strong>119 of 425 listings have never sold. They share one trait: generic titles with no audience hook and no emotional framing. The gap isn't the market — it's their positioning.</div>
+      </div>
+      <div class="fail-item">
+        <div class="fail-pct">$14+</div>
+        <div class="fail-text"><strong>Premium pricing before proof kills conversions.</strong>13 listings priced $14–$30 average only 2.2 reviews each. Premium pricing works — but only after review velocity. Sequence matters.</div>
+      </div>
+      <div class="fail-item">
+        <div class="fail-pct">3.6★</div>
+        <div class="fail-text"><strong>The alcohol marker gap is real and unresolved.</strong>One book. 84 reviews. 3.6 stars — all from bleed-through complaints. The demand exists. The quality doesn't. First publisher to solve paper quality owns this segment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAP PREVIEW -->
+  <div class="section">
+    <div class="section-label">Partial preview — market gaps</div>
+    <h2>Where the whitespace actually is</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">The gap formula: high average reviews + low product count = exploitable whitespace. These categories have strong per-product review performance but only 2–8 titles competing.</p>
+    <div class="gap-card">
+      <div class="gap-row">
+        <span class="gap-niche">Swear word coloring books</span>
+        <div class="gap-meta"><span class="gap-reviews">110 avg reviews</span><span class="gap-comp">6 products</span></div>
+      </div>
+      <div class="gap-row">
+        <span class="gap-niche">Manifestation-themed books</span>
+        <div class="gap-meta"><span class="gap-reviews">76 avg reviews</span><span class="gap-comp">6 products</span></div>
+      </div>
+      <div class="gap-row blurred">
+        <span class="gap-niche">Alcohol marker paper quality</span>
+        <div class="gap-meta"><span class="gap-reviews">84 avg reviews</span><span class="gap-comp">1 product</span></div>
+      </div>
+      <div class="gap-row blurred">
+        <span class="gap-niche">Identity-anchored niche #4</span>
+        <div class="gap-meta"><span class="gap-reviews">61 avg reviews</span><span class="gap-comp">3 products</span></div>
+      </div>
+      <div class="gap-row blurred">
+        <span class="gap-niche">Underserved audience niche #5</span>
+        <div class="gap-meta"><span class="gap-reviews">44 avg reviews</span><span class="gap-comp">4 products</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="section">
+    <div class="section-label">One more free insight</div>
+    <h2>The $9.99 flywheel</h2>
+    <div class="insight">
+      <div class="insight-label">Key finding</div>
+      <p><span>206 of 425 listings are priced $9–$11.</span> Both Amazon Best Seller badges in the coloring book category sit at exactly $9.99. Books above $14 average 0–7 reviews each. This isn't a coincidence — it's the impulse-buy threshold that activates the review flywheel. The full report explains exactly when to break this rule and charge more.</p>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <div class="section">
+    <div class="section-label">Full report includes</div>
+    <h2>What's locked inside</h2>
+    <div class="inside-grid">
+      <div class="inside-item visible"><span class="check">✓</span>Full failure pattern analysis (you just saw this)</div>
+      <div class="inside-item visible"><span class="check">✓</span>The $9.99 flywheel breakdown</div>
+      <div class="inside-item"><span class="lock">⊘</span>All 10 underserved niches with avg reviews + competition score</div>
+      <div class="inside-item"><span class="lock">⊘</span>Backend keywords for each niche (5 per niche)</div>
+      <div class="inside-item"><span class="lock">⊘</span>3-day KDP launch framework used by top sellers</div>
+      <div class="inside-item"><span class="lock">⊘</span>6 structural patterns separating winners from zero-review books</div>
+      <div class="inside-item"><span class="lock">⊘</span>Price distribution data across all 425 listings</div>
+      <div class="inside-item"><span class="lock">⊘</span>5 publisher mistakes with real dataset evidence</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-price">
+      <span class="amount">$5</span>
+      <span class="label">one-time · then</span>
+      <span class="orig">$19</span>
+    </div>
+    <h2>Get the full report before<br>the price goes up</h2>
+    <p class="cta-sub">425 listings. 10 real gaps. One 3-day launch framework.<br>Everything you saw above — plus what's still locked.</p>
+    <!-- REPLACE href WITH YOUR WHOP LINK -->
+    <a href="https://whop.com/market-gap-logic/kdp-coloring-book-market-intelligence-report/" class="btn">Get instant access — $5</a>
+    <p class="guarantee">One-time purchase. Instant download. No subscription.</p>
+  </div>
+
+</div>
+</body>
+</html>
